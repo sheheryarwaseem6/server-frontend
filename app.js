@@ -69,3 +69,22 @@ function addUser() {
 
 
 }
+
+function updateUser() {
+    const url2 = "https://registration-assignment1.herokuapp.com/user"
+    const name = document.getElementById("name").value
+    const email = document.getElementById("email").value
+    const address = document.getElementById("address").value
+
+    axios.put(url2)
+        .then(res => {
+            this.setState({
+                cat: res
+            });
+        })
+        .catch((err) => {
+            console.log(err);
+        })
+
+
+}
