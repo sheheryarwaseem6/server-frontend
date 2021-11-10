@@ -71,20 +71,47 @@ function addUser() {
 }
 
 function updateUser() {
-    const url2 = "https://registration-assignment1.herokuapp.com/user"
-    const name = document.getElementById("name").value
-    const email = document.getElementById("email").value
-    const address = document.getElementById("address").value
+    const id = document.getElementById("id").value;
+    const name = document.getElementById("name").value;
+    const email = document.getElementById("email").value;
+    const address = document.getElementById("address").value;
+    const updateUserURL = `https://registration-assignment1.herokuapp.com/user/${id}`;
 
-    axios.put(url2)
-        .then(res => {
-            this.setState({
-                cat: res
-            });
-        })
-        .catch((err) => {
-            console.log(err);
-        })
+    if (name === "" || email === "" || address === "" || id === "") {
+        alert("Please Fill All the Fields");
+    } else {
+        const userData = {
+            id: id,
+            name: name,
+            email: email,
+            address: address,
+        };
 
+        axios.put(updateUserURL, userData).then((response) => {
+            alert(`${userData.name} is Updated`);
+            getUsers();
+        });
+    }
+
+}
+
+function deleteUser() {
+
+    let id = document.getElementById("id").value;
+    console.log(id);
+    const deleteUserURL = `https://registration-assignment1.herokuapp.com/user/${id}`;
+
+    if (id === "") {
+        alert("Please Enter ID");
+    } else {
+        const userData = {
+            id: id
+        };
+
+        axios.delete(deleteUserURL, userData).then((response) => {
+            alert(`${userData.name} is Deleted`);
+            getUsers();
+        });
+    }
 
 }
