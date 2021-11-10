@@ -30,7 +30,7 @@ function getUser() {
         const users = response.data
         // console.log(users)
         const userList = users.map((user) => {
-            return ` <tr> <td> ${user.name} </td> <td> ${user.email} </td> <td> ${user.address} </td></tr>`
+            return ` <tr> <td>${user.id}</td> <td> ${user.name} </td> <td> ${user.email} </td> <td> ${user.address} </td></tr>`
 
         })
         result.innerHTML = ""
